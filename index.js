@@ -13,6 +13,14 @@ const argv = program.opts();
 const contacts = require("./contacts");
 
 
+const startCli = async (argv) => {
+  try {
+    await invokeAction(argv);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
@@ -38,6 +46,7 @@ async function invokeAction({ action, id, name, email, phone }) {
     default:
       console.warn("\x1B[31m Unknown action type!");
   }
-}
+};
 
-invokeAction(argv);
+
+startCli(argv);
